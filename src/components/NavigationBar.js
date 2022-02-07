@@ -18,7 +18,7 @@ class NavigationBar extends React.Component {
   render() {
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <Logo />
             <NavigationLinks

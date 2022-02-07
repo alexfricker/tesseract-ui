@@ -1,0 +1,14 @@
+.glow {
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      color: #1e81b0;
+    }
+    to {
+        color: rgba(30, 129, 176, 0.45);
+    }
+  }

@@ -3,7 +3,7 @@ import Spinner from "./Spinner";
 
 class Api extends React.Component {
   componentDidMount() {
-    window.location.href = "http://localhost/swagger";
+    window.location.href = "http://localhost/";
   }
 
   render() {

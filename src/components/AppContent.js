@@ -8,7 +8,7 @@ import ApiPage from "./ApiPage";
 import AdminPage from "./AdminPage";
 
 class AppContent extends React.Component {
-  render() {
+  getPage() {
     if (this.props.selection === "Pipelines") {
       return <PipelinePage />;
     }
@@ -24,15 +24,17 @@ class AppContent extends React.Component {
     if (this.props.selection === "Admin") {
       return <AdminPage />;
     }
-    else {
+  }
+
+  render() {
+    
       return (
           <Container>
-              <Box>
-                  <div>{this.props.selection}</div>
+              <Box sx={{pt:10}}>
+                  {this.getPage()}
               </Box>
           </Container>
       );
-    }
   }
 }
 

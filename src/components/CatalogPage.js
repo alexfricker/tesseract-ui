@@ -4,33 +4,34 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
 import Fab from "@mui/material/Fab";
-import Autocomplete from "@mui/material/Autocomplete";
+import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
-import TextField from '@mui/material/TextField';
 import SiteSearch from "./SiteSearch";
 import tesseract from "../api/tesseract";
+import ContentCard from "./ContentCard";
+import CatalogFilter from "./CatalogFilter";
 
 class CatalogPage extends React.Component {
   state = { dataSources: [] };
 
-  componentDidMount () {
-    this.getCatalog("")
+  componentDidMount() {
+    this.getCatalog("");
   }
 
-  async getCatalog (term) {
+  async getCatalog(term) {
     const response = await tesseract.get("/catalog/data-sources");
 
-    this.setState({images: response.data.results})
+    this.setState({ dataSources: response.data.results });
   }
 
   render() {
-    const options = [];
-
-    console.log(this.state.dataSources)
+    const dataSources = this.state.dataSources.map((dataSource) => {
+      return <ContentCard key={dataSource.id} data_src={dataSource} />;
+    });
 
     return (
       <Container>
-        <Box sx={{ flexGrow: 1, pt: 3 }}>
+        <Box sx={{ flexGrow: 1, pt: 3, mb: 5, mt: 2  }}>
           <Toolbar>
             <Typography variant="h2" component="div">
               Data Catalog
@@ -41,17 +42,12 @@ class CatalogPage extends React.Component {
               </Fab>
             </Box>
             <SiteSearch />
-            <Autocomplete
-              id="type-filter"
-              options={options}
-              sx={{ width: 175 }}
-              renderInput={(params) => <TextField {...params} label="Filter" />}
-            />
+            <CatalogFilter />
           </Toolbar>
         </Box>
-        <Typography>
-          {this.state.dataSources}
-        </Typography>
+        <Grid container spacing={2}>
+          {dataSources}
+        </Grid>
       </Container>
     );
   }
