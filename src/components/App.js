@@ -7,20 +7,19 @@ import Footer from "./Footer";
 import TokenAuth from "./TokenAuth";
 
 
-
-function setAuthToken() {
-
-  const queryParams = new URLSearchParams(window.location.search);
-  const uid = queryParams.get('uid');
-  const authToken = queryParams.get('token');
-  localStorage.setItem('jwtToken', authToken)
-  localStorage.setItem('uid', uid)
-  console.log("jwtToken: " + localStorage.getItem('jwtToken'))
-
-}
-
 class App extends React.Component {
   state = { contentSelection: "Pipelines" };
+
+  setAuthToken () {
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const uid = queryParams.get('uid');
+    const authToken = queryParams.get('token');
+    localStorage.setItem('jwtToken', authToken)
+    localStorage.setItem('uid', uid)
+    console.log("jwtToken: " + localStorage.getItem('jwtToken'))
+  
+  }
 
   onContentSelect = (contentName) => {
     //alert("WARNING: This is a development prototype. It is not ready for production use.\nUSE AT YOUR OWN RISK");
@@ -28,7 +27,7 @@ class App extends React.Component {
   }
 
   render() {
-    setAuthToken();
+    this.setAuthToken();
     return (
       <Box>
         <NavigationBar onContentSelect={this.onContentSelect} selection={this.state.contentSelection} />
