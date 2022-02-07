@@ -15,7 +15,7 @@ function setAuthToken() {
   const authToken = queryParams.get('token');
   localStorage.setItem('jwtToken', authToken)
   localStorage.setItem('uid', uid)
-  caches.log("jwtToken: " + localStorage.getItem('jwtToken'))
+  console.log("jwtToken: " + localStorage.getItem('jwtToken'))
 
 }
 
