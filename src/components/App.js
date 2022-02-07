@@ -4,21 +4,32 @@ import "./App.css";
 import NavigationBar from "./NavigationBar";
 import AppContent from "./AppContent";
 import Footer from "./Footer";
-import TokenAuth from "./TokenAuth";
+import tesseract from "../api/tesseract";
 
 
 class App extends React.Component {
-  state = { contentSelection: "Pipelines" };
+  state = { contentSelection: "Pipelines", user: null };
 
-  setAuthToken () {
+  async setUser() {
+    const response = await tesseract.get("/users/" + localStorage.getItem('uid') + "/");
+    this.setState({ user: response.data });
+  }
+
+  setAuthToken() {
 
     const queryParams = new URLSearchParams(window.location.search);
     const uid = queryParams.get('uid');
     const authToken = queryParams.get('token');
-    localStorage.setItem('jwtToken', authToken)
-    localStorage.setItem('uid', uid)
-    console.log("jwtToken: " + localStorage.getItem('jwtToken'))
-  
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    if (authToken) {
+      if (authToken !== jwtToken || !this.state.user) {
+        localStorage.setItem('jwtToken', authToken)
+        localStorage.setItem('uid', uid)
+        this.setUser()
+      }
+    }
+
   }
 
   onContentSelect = (contentName) => {
@@ -30,7 +41,7 @@ class App extends React.Component {
     this.setAuthToken();
     return (
       <Box>
-        <NavigationBar onContentSelect={this.onContentSelect} selection={this.state.contentSelection} />
+        <NavigationBar onContentSelect={this.onContentSelect} selection={this.state.contentSelection} user={this.state.user}/>
         <AppContent selection={this.state.contentSelection} />
         <Footer />
       </Box>
