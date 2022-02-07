@@ -14,7 +14,7 @@ const ContentCard = (props) => {
     
   return (
     <Grid item>
-      <Card sx={{ minWidth: 275, bgcolor: "#F5F5F5" }}>
+      <Card sx={{ minWidth: 275, bgcolor: "#F5F5F5", maxWidth: 60 }}>
         <CardActionArea onClick={() => cardWasClicked(props.data_src.id)}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -22,7 +22,7 @@ const ContentCard = (props) => {
             </Typography>
             <hr></hr>
             <Typography variant="body2" color="text.secondary">
-              {props.data_src.type}
+              {props.data_src.type.name}
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{pt: 3}}>
               {props.data_src.description
