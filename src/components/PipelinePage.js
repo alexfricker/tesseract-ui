@@ -22,29 +22,29 @@ import "./PipelinePage.css";
 
 // Sample Data
 const pipelineStats = [
-  { name: "Purecloud.Primary", status: "Healthy" },
-  { name: "BAI2.USBank", status: "Healthy" },
-  { name: "Hubspot.Primary", status: "Healthy" },
-  { name: "Xifin.API.Codes", status: "Healthy" },
-  { name: "MGE01P.Primary", status: "Running" },
-  { name: "Okta.Primary", status: "Running" },
-  { name: "Genesight.Primary", status: "Delayed" },
-  { name: "CounsylProduct.Primary", status: "Starting" },
-  { name: "M1SF.Primary", status: "Error" },
-  { name: "Okta.Secondary", status: "Disabled" },
-  { name: "Xifin.SFTP.Primary", status: "Healthy" },
-  { name: "Xifin.SFTP.Statements", status: "Healthy" },
-  { name: "Clarify.SFTP.Primary", status: "Running" },
-  { name: "Glidian.Primary", status: "Running" },
-  { name: "NPI.Primary", status: "Healthy" },
-  { name: "HCM.SOAP.Primary", status: "Healthy" },
-  { name: "HCM.REST.Primary", status: "Running" },
-  { name: "TipReport.Primary", status: "Healthy" },
-  { name: "ADP.SFTP.Primary", status: "Healthy" },
-  { name: "BAI2.USBank", status: "Healthy" },
-  { name: "Hubspot.Primary", status: "Healthy" },
-  { name: "Xifin.API.Codes", status: "Healthy" },
-  { name: "MGE01P.Primary", status: "Running" },
+  { id: 1, name: "Purecloud.Primary", status: "Healthy" },
+  { id: 2, name: "BAI2.USBank", status: "Healthy" },
+  { id: 3, name: "Hubspot.Primary", status: "Healthy" },
+  { id: 4, name: "Xifin.API.Codes", status: "Healthy" },
+  { id: 5, name: "MGE01P.Primary", status: "Running" },
+  { id: 6, name: "Okta.Primary", status: "Running" },
+  { id: 7, name: "Genesight.Primary", status: "Delayed" },
+  { id: 8, name: "CounsylProduct.Primary", status: "Starting" },
+  { id: 9, name: "M1SF.Primary", status: "Error" },
+  { id: 10, name: "Okta.Secondary", status: "Disabled" },
+  { id: 11, name: "Xifin.SFTP.Primary", status: "Healthy" },
+  { id: 12, name: "Xifin.SFTP.Statements", status: "Healthy" },
+  { id: 13, name: "Clarify.SFTP.Primary", status: "Running" },
+  { id: 14, name: "Glidian.Primary", status: "Running" },
+  { id: 15, name: "NPI.Primary", status: "Healthy" },
+  { id: 16, name: "HCM.SOAP.Primary", status: "Healthy" },
+  { id: 17, name: "HCM.REST.Primary", status: "Running" },
+  { id: 18, name: "TipReport.Primary", status: "Healthy" },
+  { id: 19, name: "ADP.SFTP.Primary", status: "Healthy" },
+  { id: 20, name: "BAI2.USBank", status: "Healthy" },
+  { id: 21, name: "Hubspot.Primary", status: "Healthy" },
+  { id: 22, name: "Xifin.API.Codes", status: "Healthy" },
+  { id: 23, name: "MGE01P.Primary", status: "Running" },
 ];
 
 class PipelinePage extends React.Component {
@@ -73,7 +73,7 @@ class PipelinePage extends React.Component {
   }
   getPipelineItem(pipelineStat) {
     return (
-      <ListItem sx={{ bgcolor: "#F5F5F5" }} disablePadding>
+      <ListItem sx={{ bgcolor: "#F5F5F5" }} disablePadding key={pipelineStat.id}>
         <ListItemButton>
           <Box sx={{ flexGrow: 1, pl: 2 }}>
             <ListItemText primary={pipelineStat.name} />
