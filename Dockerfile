@@ -1,11 +1,13 @@
-FROM python:3.9
+FROM python:3.8
 
 WORKDIR /app
-RUN apt update && apt install libpq-dev python3-dev xmlsec1 libxml2-dev libxmlsec1-dev libxmlsec1-openssl nodejs npm -y
-RUN python -m pip install --upgrade pip
-
-COPY . .
+COPY package.json /app/
+COPY package-lock.json /app/
+RUN apt update && apt install npm -y
 RUN npm install
+
+COPY ./public /app/public
+COPY ./src /app/src
 
 EXPOSE 3000
 
