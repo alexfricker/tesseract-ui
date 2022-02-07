@@ -9,11 +9,14 @@ import TokenAuth from "./TokenAuth";
 
 
 function setAuthToken() {
+
   const queryParams = new URLSearchParams(window.location.search);
   const uid = queryParams.get('uid');
   const authToken = queryParams.get('token');
   localStorage.setItem('jwtToken', authToken)
   localStorage.setItem('uid', uid)
+  print("jwtToken: " + localStorage.getItem('jwtToken'))
+  
 }
 
 class App extends React.Component {
