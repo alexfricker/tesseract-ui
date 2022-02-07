@@ -15,8 +15,8 @@ function setAuthToken() {
   const authToken = queryParams.get('token');
   localStorage.setItem('jwtToken', authToken)
   localStorage.setItem('uid', uid)
-  print("jwtToken: " + localStorage.getItem('jwtToken'))
-  
+  caches.log("jwtToken: " + localStorage.getItem('jwtToken'))
+
 }
 
 class App extends React.Component {
